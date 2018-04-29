@@ -1,0 +1,89 @@
+@import "define/variable.scss";
+@import "define/mixin.scss";
+
+$fc_width : 500px;
+$fc : "fc-";
+
+#focus-card {    
+    .#{$fc}background{
+        display: block;
+        background: rgba(0,0,0,0.5);
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+
+    .#{$fc}content{
+        width: 100%;
+        background: whitesmoke;
+        position:fixed;
+        top:0;
+        z-index: 10;
+
+        @include center_horizontal($fc_width);
+
+        .#{$fc}header{
+            width: 100%;
+            background: $COLOR_DARKER;
+            color:$COLOR_DARKER_TEXT;
+            border-bottom: grey 1px solid;
+            padding:2px;
+        }
+
+        .#{$fc}header.previous{
+            padding-top: 22px;
+        }
+        
+        .#{$fc}body{
+            padding: 0 10px;
+            max-height: 85vh;
+            min-height: 50vh;
+            margin-bottom: 25px;
+            overflow-y: auto;
+
+            .loader{
+                padding-top: 100px;
+            }
+        }
+
+        .#{$fc}previous-btn{
+            position: absolute;
+            left: 5px;
+            top: 2px;
+        }
+
+        .#{$fc}close-btn{
+            position: absolute;
+            right: 5px;
+            top: 2px;
+        }
+
+        .#{$fc}title{
+            font-size:18px;
+        }
+    } 
+}
+
+@media only screen and (max-width: $fc_width){
+    #focus-card {
+        .#{$fc}content{
+            width: 100%;
+            margin-left: 0px;
+            left: 0;
+        }
+    }
+}
+
+
+#focus-card.small{
+    .#{$fc}body{
+        min-height: 0;
+
+        .loader{
+            padding-top: 10px;
+        }
+    }
+}

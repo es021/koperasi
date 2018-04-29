@@ -1,0 +1,13 @@
+node_modules
+.vscode
+compress
+nbproject
+npm-debug.log
+package.json
+package-lock.json
+public/upload/
+server/secret/
+
+wp/wp-config.php
+wp/wp-admin/
+wp/wp-includes/

@@ -1,0 +1,53 @@
+form{
+    text-align: left;
+    max-width: 400px;
+    margin: auto;
+
+    .loader{
+        padding-top:0 !important;
+    }
+
+    .form-header{
+        border-bottom: solid gray 1px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-item {
+        .form-sublabel{
+            font-size:80%;
+            color:gray;
+            font-style: italic;
+        }
+        .form-input {
+            margin-bottom: 10px;
+            div{
+                width: 100%;
+            }
+            
+            .checkbox{
+                width: auto;
+            }
+        }
+
+        .form-warning {
+            margin-top: -10px;
+            margin-bottom: 10px;
+            color: red;
+            font-style: oblique;
+            opacity: 0.8;
+        }
+    }
+
+    .form-submit {
+        text-align: center;
+    }
+
+    .form-error{
+        margin: 10px 0;
+        padding:7px 15px;
+        text-align: center;
+    }
+
+}

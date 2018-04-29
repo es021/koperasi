@@ -1,0 +1,27 @@
+@import "define/mixin.scss";
+@import "define/variable.scss";
+
+a{
+    cursor:pointer;   
+}
+
+a.dark,
+.button-icon.dark{
+    color:lighten($COLOR_LINK, 10);
+}
+
+a.dark:hover,
+.button-icon.dark:hover{
+    color:lighten($COLOR_LINK, 20);
+}
+
+
+
+.btn{
+    border-radius: 0 !important;
+}
+
+@include button_color("btn-primary",$COLOR_DARK);
+@include button_color("btn-blue",#286090);
+
+

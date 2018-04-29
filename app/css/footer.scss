@@ -1,0 +1,46 @@
+@import "define/variable.scss";
+
+footer{
+    text-align: center;
+    color:lightgray;
+    font-size:13px;
+    
+    .container-fluid{
+        background: $COLOR_DARK;
+    }
+    
+    .title{
+        color: darkgray;
+        font-size: 90%;
+
+        //top side bottom
+        //margin: 15px 0 5px;
+    }
+
+
+    .brand{
+        padding-bottom: 20px;
+
+        .social{            
+            .button-icon{
+                margin:0 7px;
+            }
+        }
+
+        .copyright{
+            margin-bottom: 5px;
+            font-size: 85%;
+        }
+    }
+
+}
+
+@media only screen and (max-width: $LAYOUT_SM_BOOTSTRAP){
+    footer{
+        .orgs{
+            text-align: center;
+        }
+    }
+
+}
+
