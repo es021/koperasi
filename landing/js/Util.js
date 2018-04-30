@@ -1,6 +1,6 @@
 class UtilClass {
     constructor() {
-        this.PAGE_DEFAULT = "home";
+        this.PAGE_DEFAULT = "laman-utama";
     }
     _GET(sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
