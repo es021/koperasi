@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Loader } from '../component/loader';
 import Form, { toggleSubmit } from '../component/form';
 import Restricted from './partial/static/restricted';
-import { AuthAPIErr } from '../../server/api/auth-api';
+import { AuthAPIErr } from '../../config/api-config';
+
 import { passwordResetOld, passwordResetToken, getAuthUser, isAuthorized } from '../redux/actions/auth-actions';
 import { NavLink } from 'react-router-dom';
 import { RootPath } from '../../config/app-config';

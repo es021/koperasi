@@ -3,6 +3,13 @@
 left_bar{
     text-align: left;
     background: $COLOR_DARKER;
+    
+    .left_bar_greet{
+        color:$COLOR_DARKER_TEXT;
+        text-align: center;
+        padding: 10px 7px;
+        border-bottom: darken($COLOR_DARKER_TEXT,10) 1px solid;
+    }
 
     .left_bar_nav {
         ul li{
@@ -30,18 +37,18 @@ left_bar{
         }
     }
 
-    .left_bar_profile .profile-card {
+    // .left_bar_profile .profile-card {
 
-        .#{$PROFILE_CARD}picture{
-            cursor:pointer;
-            width: ($LEFTBAR_LG_WIDTH / 1.5) !important;
-            height: ($LEFTBAR_LG_WIDTH / 1.5) !important;
-        }
+    //     .#{$PROFILE_CARD}picture{
+    //         cursor:pointer;
+    //         width: ($LEFTBAR_LG_WIDTH / 1.5) !important;
+    //         height: ($LEFTBAR_LG_WIDTH / 1.5) !important;
+    //     }
 
-        .#{$PROFILE_CARD}picture:hover{
-            box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        }
-    }
+    //     .#{$PROFILE_CARD}picture:hover{
+    //         box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    //     }
+    // }
 
 }
 
@@ -57,21 +64,21 @@ left_bar{
             }
         }
 
-        .left_bar_profile .profile-card {
+        // .left_bar_profile .profile-card {
 
-            margin : 10px 0;
-            margin-bottom: 7px;
+        //     margin : 10px 0;
+        //     margin-bottom: 7px;
 
-            .#{$PROFILE_CARD}picture{
-                width: ($LEFTBAR_MD_WIDTH - 10) !important;
-                height: ($LEFTBAR_MD_WIDTH - 10) !important;
-                border-radius: 0;
-            }
+        //     .#{$PROFILE_CARD}picture{
+        //         width: ($LEFTBAR_MD_WIDTH - 10) !important;
+        //         height: ($LEFTBAR_MD_WIDTH - 10) !important;
+        //         border-radius: 0;
+        //     }
 
-            .#{$PROFILE_CARD}title, .#{$PROFILE_CARD}subtitle, .#{$PROFILE_CARD}body{
-                display: none;
-            }
-        }
+        //     .#{$PROFILE_CARD}title, .#{$PROFILE_CARD}subtitle, .#{$PROFILE_CARD}body{
+        //         display: none;
+        //     }
+        // }
     }
 }
 
@@ -94,9 +101,9 @@ left_bar{
             }
         }
 
-        .left_bar_profile .profile-card {
-            margin : 5px;
-        }
+        // .left_bar_profile .profile-card {
+        //     margin : 5px;
+        // }
 
     }
 }

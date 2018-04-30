@@ -79,12 +79,17 @@ const UserMeta = {
 };
 
 const UserEnum = {
+    ROLE_ADMIN: "administrator",
+    ROLE_AGENT: "agent",
+    ROLE_STAFF: "staff",
+
+    
     ROLE_STUDENT: "student",
     ROLE_RECRUITER: "recruiter",
-    ROLE_ADMIN: "administrator",
     ROLE_EDITOR: "editor",
     ROLE_ORGANIZER: "organizer",
     ROLE_SUPPORT: "support",
+
     STATUS_ACT: "Active",
     STATUS_NOT_ACT: "Not Activated"
 };

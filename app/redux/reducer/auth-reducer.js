@@ -89,9 +89,11 @@ auth = {
         user_status: "Active",
         first_name: "Student",
         last_name: "For Test",
+        user_email : "zulsarhan.shaari@gmail.com",
         img_url: "http://seedsjobfair.com/wp-content/uploads/2017/07/user_136_profile_image.jpeg",
         img_pos: "18% 29%",
-        img_size: "195% auto"
+        img_size: "195% auto",
+        role: "administrator"
     },
 
     isAuthorized: true,

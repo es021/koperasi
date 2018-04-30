@@ -39,35 +39,30 @@ export default class LeftBarLayout extends React.Component {
 
     render() {
         console.log("Render Left Bar");
-        var isAuth = isAuthorized();
-        var authUser = Object.assign({}, getAuthUser());
-        if (this.state.isMdWin && typeof authUser["img_pos"] !== "undefined" && authUser["img_pos"] !== null) {
-            if (authUser["img_pos"].indexOf("px") > -1) {
-                authUser["img_pos"] = getPositionStr(25, authUser["img_pos"], "px", true);
-            }
-        }
-        //<br></br>
-        //<NavLink to={`${RootPath}/app/edit-profile/profile`} >Edit Profile</NavLink>
-        var profile = "";
-        if (isAuth) {
+
+        //var authUser = Object.assign({}, getAuthUser());
+        // if (this.state.isMdWin && typeof authUser["img_pos"] !== "undefined" && authUser["img_pos"] !== null) {
+        //     if (authUser["img_pos"].indexOf("px") > -1) {
+        //         authUser["img_pos"] = getPositionStr(25, authUser["img_pos"], "px", true);
+        //     }
+        // }
+
+        var profile = null;
+        if (isAuthorized()) {
+            var authUser = getAuthUser();
             var pcBody = <small>
                 <a>Edit Profile</a>
             </small>;
 
-            //var pcBody = <small>
-            //    <i className="text-muted">{authUser.role.capitalize()}</i>
-            //</small>;
-
-            profile =
-                (<div className="left_bar_profile">
-                    <NavLink to={`${RootPath}/app/edit-profile/profile`} >
-                        <ProfileCard type="student" theme="dark"
-                            title={authUser.first_name} subtitle={authUser.last_name}
-                            img_url={authUser.img_url} img_pos={authUser.img_pos} img_size={authUser.img_size}
-                            body={pcBody}></ProfileCard>
-                    </NavLink>
-                </div>);
-
+            profile = <div className="left_bar_greet">
+                <i>Welcome,</i><br></br>
+                <b>{authUser.first_name}</b>
+                <br></br>{authUser.last_name}
+                <br></br>
+                <small>
+                    <i className="text-muted">{authUser.role.capitalize()}</i><br></br>
+                </small>
+            </div>;
         } else {
             profile = <br></br>;
         }

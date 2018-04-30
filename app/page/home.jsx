@@ -12,13 +12,13 @@ export class HomeAdmin extends React.Component {
 }
 export class HomeStaff extends React.Component {
     render() {
-        return <div>THis is Home for Admin</div>
+        return <div>THis is Home for Staff</div>
     }
 }
 
 export class HomeAgent extends React.Component {
     render() {
-        return <div>THis is Home for Admin</div>
+        return <div>THis is Home for Agent</div>
     }
 }
 

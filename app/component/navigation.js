@@ -6,23 +6,25 @@ import { LandingUrl } from '../../config/app-config';
 
 import LoginPage from '../page/login';
 import SignUpPage from '../page/sign-up';
-import {FaqPage, ContactUsPage} from '../page/static';
+import { FaqPage, ContactUsPage } from '../page/static';
 import AboutPage from '../page/about';
 import { HomeAgent, HomeStaff, HomeAdmin } from '../page/home';
 import NotFoundPage from '../page/not-found';
 import LogoutPage from '../page/logout';
 import EditProfilePage from '../page/edit-profile';
-import DashboardPage from '../page/dashboard';
 import PasswordResetPage from '../page/password-reset';
 import PasswordForgotPage from '../page/password-forgot';
 
-import { isAuthorized, getAuthUser, isRoleStudent, isRoleRec, isRoleAdmin } from '../redux/actions/auth-actions';
+import EnquiriesPage from '../page/enquiries';
+
+import { isAuthorized, getAuthUser, isRoleAgent, isRoleAdmin, isRoleStaff } from '../redux/actions/auth-actions';
 
 function getHomeComponent() {
     var homeComponent = null;
+
     if (isAuthorized()) {
-        if (isRoleStudent()) homeComponent = HomeAgent;
-        else if (isRoleRec()) homeComponent = HomeStaff;
+        if (isRoleAgent()) homeComponent = HomeAgent;
+        else if (isRoleStaff()) homeComponent = HomeStaff;
         else if (isRoleAdmin()) homeComponent = HomeAdmin;
     } else {
         homeComponent = LoginPage;
@@ -30,8 +32,8 @@ function getHomeComponent() {
     return homeComponent;
 }
 
-function getMenuItem(COMING_SOON) {
-    var homeComponent = getHomeComponent(COMING_SOON);
+function getMenuItem() {
+    var homeComponent = getHomeComponent();
 
     var menuItem = [
         {
@@ -43,6 +45,16 @@ function getMenuItem(COMING_SOON) {
             bar_auth: true,
             hd_app: true,
             hd_auth: true
+        },
+        {
+            url: "/enquiries",
+            label: "Enquiries",
+            icon: "file-text",
+            component: EnquiriesPage,
+            bar_app: true,
+            bar_auth: false,
+            hd_app: false,
+            hd_auth: false
         },
         // {
         //     url: "/manage-company/:id/:current",
@@ -63,8 +75,7 @@ function getMenuItem(COMING_SOON) {
             icon: "question",
             component: null,
             href: LandingUrl,
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
+            bar_app: false,
             hd_app: true,
             hd_auth: true
         },
@@ -73,8 +84,7 @@ function getMenuItem(COMING_SOON) {
             label: "FAQ",
             icon: "question-circle",
             component: FaqPage,
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
+            bar_app: false,
             hd_app: true,
             hd_auth: true
         },
@@ -83,8 +93,7 @@ function getMenuItem(COMING_SOON) {
             label: "Contact Us",
             icon: "envelope",
             component: ContactUsPage,
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
-            bar_app: COMING_SOON && !(isRoleOrganizer() || isRoleAdmin()),
+            bar_app: false,
             hd_app: true,
             hd_auth: true
         },
@@ -158,9 +167,9 @@ function getMenuItem(COMING_SOON) {
 // ############################################################################/
 /**** HELPER FUNCTION *******/
 
-export function getRoute(path, COMING_SOON) {
+export function getRoute(path) {
     var isLog = isAuthorized();
-    var menuItem = getMenuItem(COMING_SOON);
+    var menuItem = getMenuItem();
     var routes = menuItem.map(function (d, i) {
         //restricted
         if (d.disabled) {
@@ -219,10 +228,10 @@ function isBarValid(isHeader, isLog, d) {
 }
 
 
-export function getBar(path, COMING_SOON, isHeader = false) {
+export function getBar(path, isHeader = false) {
 
     var isLog = isAuthorized();
-    var menuItem = getMenuItem(COMING_SOON);
+    var menuItem = getMenuItem();
 
     var menuList = menuItem.map(function (d, i) {
         var exact = (d.url === "/") ? true : false;

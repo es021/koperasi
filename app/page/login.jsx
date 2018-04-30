@@ -7,11 +7,10 @@ import { bindActionCreators } from 'redux';
 import Form, { getDataCareerFair } from '../component/form';
 
 import { RootPath } from '../../config/app-config';
+import { AuthAPIErr } from '../../config/api-config';
 import { Redirect, NavLink } from 'react-router-dom';
-//<NavLink to={`${RootPath}/auth/activation-link`}>Did Not Received Email?</NavLink>
 
 import { ButtonLink } from '../component/buttons';
-import { AuthAPIErr } from '../../server/api/auth-api';
 import { getCF, isCookieEnabled } from '../redux/actions/auth-actions';
 
 //state is from redux reducer
@@ -117,11 +116,6 @@ class LoginPage extends React.Component {
                     Password Incorrect
                     <br></br>
                     <small><NavLink to={`${RootPath}/auth/password-forgot`}>Forgot Your Password?</NavLink></small>
-                </span>;
-                break;
-            case AuthAPIErr.INVALID_CF:
-                error = <span>
-                    This account is not registered for the selected career fair
                 </span>;
                 break;
         }

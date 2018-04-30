@@ -22,7 +22,7 @@ var PHPApi = (isProd) ? `https://seedsjobfair.com/php-api/` : RootUrl + `/cf-app
 var WPAjaxApi = (isProd) ? "https://seedsjobfair.com/career-fair/wp-admin/admin-ajax.php" : RootUrl + "/career-fair/wp-admin/admin-ajax.php";
 
 const AppConfig = {
-    Name: `1Koperasi`,
+    Name: `1Koperasi Dashboard`,
     Desc: "Kami Meringankan Masalah Kewangan Anda",
     Url: (isProd || isProdLocal) ? PHPApi : "http://localhost:8080",
     Api: SiteUrl,

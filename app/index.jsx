@@ -43,14 +43,13 @@ class PrimaryLayout extends React.Component {
 		window.scrollTo(0, 0);
 		var path = this.props.match.path;
 
-		var logData = window.location.pathname;
-		logData = logData.replace(path, "");
-		addLog(LogEnum.EVENT_OPEN_PAGE, logData);
+		//var logData = window.location.pathname;
+		//logData = logData.replace(path, "");
+		//addLog(LogEnum.EVENT_OPEN_PAGE, logData);
 
-		var COMING_SOON = isComingSoon();
-		var headerMenu = Navigation.getBar(path, COMING_SOON, true);
-		var sideMenu = Navigation.getBar(path, COMING_SOON);
-		var route = Navigation.getRoute(path, COMING_SOON);
+		var headerMenu = Navigation.getBar(path, true);
+		var sideMenu = Navigation.getBar(path);
+		var route = Navigation.getRoute(path);
 
 		if (!isAuthorized()) {
 			return (<div className="primary-layout landing-page">

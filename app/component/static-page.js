@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStaticAxios } from '../../helper/api-helper';
 import { Loader } from './loader';
-import {ImageUrl} from '../../config/app-config'
+import { ImageUrl } from '../../config/app-config'
 
 export default class StaticPage extends React.Component {
     constructor(props) {
@@ -27,9 +27,14 @@ export default class StaticPage extends React.Component {
         if (this.state.loading) {
             view = <Loader size="3" text="Loading Page.."></Loader>;
         } else {
-            console.log(ImageUrl);
-            var content = this.state.content.replaceAll("{ImageUrl}",ImageUrl);
-            view = <div dangerouslySetInnerHTML={{ __html: content}}></div>;
+            try {
+                console.log(ImageUrl);
+                var content = this.state.content.replaceAll("{ImageUrl}", ImageUrl);
+                view = <div dangerouslySetInnerHTML={{ __html: content }}></div>;
+            }
+            catch (err) {
+                view = <div>Error rendering static page : <br></br>{err}</div>;
+            }
         }
 
         return (<div>
@@ -40,9 +45,9 @@ export default class StaticPage extends React.Component {
 
 StaticPage.propTypes = {
     filename: PropTypes.string.isRequired,
-    version : PropTypes.string
+    version: PropTypes.string
 };
 
 StaticPage.defaultProps = {
-    version : null
+    version: null
 };

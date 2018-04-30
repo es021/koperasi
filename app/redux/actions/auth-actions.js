@@ -85,6 +85,7 @@ export function isCookieEnabled() {
     return store.getState().auth.cookie;
 }
 
+/*
 export function isRoleStudent() {
     return getAuthUser().role === UserEnum.ROLE_STUDENT;
 }
@@ -100,11 +101,18 @@ export function isRoleOrganizer() {
 export function isRoleSupport() {
     return getAuthUser().role === UserEnum.ROLE_SUPPORT;
 }
+*/
 
 export function isRoleAdmin() {
-    return getAuthUser().role === UserEnum.ROLE_EDITOR
-        || getAuthUser().role === UserEnum.ROLE_ADMIN
-        || getAuthUser().role === UserEnum.ROLE_SUPPORT;
+    return getAuthUser().role === UserEnum.ROLE_ADMIN;
+}
+
+export function isRoleAgent() {
+    return getAuthUser().role === UserEnum.ROLE_AGENT;
+}
+
+export function isRoleStaff() {
+    return getAuthUser().role === UserEnum.ROLE_STAFF;
 }
 
 export function isTestUser() {
