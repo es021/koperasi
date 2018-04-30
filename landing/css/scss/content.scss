@@ -1,0 +1,19 @@
+@import '_constant.scss';
+
+#app-content{
+    padding: 60px 15px 0;
+    // background-image: url('/test-e/asset/image/content-bg.jpg');
+    // background-size: cover;
+    // background-position: center center;
+    
+    .content-body{
+        padding: 10px;
+    }
+
+    .content-load{
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+        color: $COLOR-BLUE;
+    }
+}

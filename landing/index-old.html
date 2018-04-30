@@ -1,0 +1,209 @@
+<!--
+/*
+ * @author Wan Zulsarhan
+ * Developed for Infomina
+ */
+-->
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/" />
+    <!--       
+                <link rel="icon" href="https://.com/-fair/wp-content/uploads/2017/04/cropped-icon-32x32.png" sizes="32x32"/>
+                <link rel="icon" href="https://.com/-fair/wp-content/uploads/2017/04/cropped-icon-192x192.png" sizes="192x192"/>
+                <link rel="apple-touch-icon-precomposed" href="https://.com/-fair/wp-content/uploads/2017/04/cropped-icon-180x180.png"/>
+                <meta name="msapplication-TileImage" content="https://.com/-fair/wp-content/uploads/2017/04/cropped-icon-270x270.png"/>
+    -->
+    <meta name="description" content="TestE" />
+    <title>TestE</title>
+    <!-- Model for global has to be loaded here need to be loaded separately -->
+    <script src="/test-e/js/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $ = jQuery;
+        // Define Global Variable
+
+        // directory root
+        var SITE_ROOT = "test-e";
+        var TEMPLATE_ROOT = SITE_ROOT + "/component/template";
+
+        // versioning
+        var MASTER_VER = "ver11212121";
+        var NAVI_VER = MASTER_VER;
+        var JS_VER = MASTER_VER;
+        var CSS_VER = MASTER_VER;
+        var HTML_VER = MASTER_VER;
+
+        //file path
+        var NAVI_PATH = SITE_ROOT + "/dataset/navi-utama.json?v=" + NAVI_VER;
+
+        function kopGetFileUrl(type, arr) {
+            var toRet = [];
+            for (var i in arr) {
+                var d = arr[i];
+                switch (type) {
+                    case 'css':
+                        toRet.push(SITE_ROOT + "/css/" + d + ".css");
+                        break;
+                    case 'js':
+                        toRet.push(SITE_ROOT + "/js/" + d + ".js");
+                        break;
+                    case 'template':
+                        toRet.push(TEMPLATE_ROOT + "/" + d + ".js");
+                        break;
+                }
+            }
+            return toRet;
+        }
+        var cssToLoad = kopGetFileUrl("css", [
+            "loading", "fontawesome-all.min", "main.bundle"
+        ]);
+        var templateToLoad = kopGetFileUrl("template", ["ImageMenu"]);
+        var jsToLoad = kopGetFileUrl("js", ["NaviImageMenus", "Util", "kopNavi"]);
+        var htmlToLoad = ["header-html", "left-bar-html", "content-html", "footer-html"];
+    </script>
+</head>
+
+<body class="kop-main">
+    <div id="kop-app-loading" class="kop-app-loading">
+        <div>
+            <img id="kop-app-loading-img" src="" alt="" hidden />
+        </div>
+    </div>
+    <div id="kop-app">
+        <div id="header-html" data-file="/component/header.html"></div>
+        <div class="kop-bar-content">
+            <div id="content-html" data-file="/component/content.html"></div>
+            <div id="left-bar-html" data-file="/component/left-bar.html"></div>
+        </div>
+        <div id="footer-html" data-file="/component/footer.html"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function MainLoadAsset() {
+                //console.log("Start Load Asset");
+                //console.log(window.location.host);
+                var assetLoaded = 0;
+                var totalAsset = jsToLoad.length + cssToLoad.length + htmlToLoad.length + templateToLoad.length;
+
+                var jsLoaded = 0;
+                var totalJs = jsToLoad.length;
+
+                // init dom
+                var body = document.getElementsByTagName("body")[0];
+                var head = document.getElementsByTagName("head")[0];
+                var app = document.getElementById('kop-app');
+                var app_load = document.getElementById('kop-app-loading');
+                var app_load_img = document.getElementById('kop-app-loading-img');
+                // load loading image
+                app_load_img.src = SITE_ROOT + "/asset/image/loader.gif";
+
+                function defaultCallback(type) {
+                    if (type == "js") {
+                        jsLoaded++;
+                        if (jsLoaded >= totalJs) {
+                            //all js loaded then only can load html
+                            htmlToLoad.map(function (id, i) {
+                                includeHtml(id, defaultCallback);
+                            });
+                        }
+                    }
+
+                    assetLoaded++;
+                    //console.log(assetLoaded, totalAsset);
+                    if (assetLoaded >= totalAsset) {
+                        // hide the loading
+                        //return;
+                        app_load.style["opacity"] = "0";
+                        app_load_img.style["opacity"] = "0";
+                        setTimeout(function () {
+                            app_load.style["display"] = "none";
+                        }, 500);
+                    }
+                }
+
+                //show loading until the main bundle finish load
+                function loadAsset(type, url, callback = null) {
+                    var asset = null;
+                    if (type === 'js') {
+                        asset = document.createElement("script");
+                        asset.type = "text/javascript";
+                    } else if (type === 'css') {
+                        asset = document.createElement("link");
+                        asset.rel = "stylesheet";
+                    }
+
+                    if (asset.readyState) {  //IE
+                        asset.onreadystatechange = function () {
+                            if (asset.readyState === "loaded" || asset.readyState === "complete") {
+                                asset.onreadystatechange = null;
+                                if (callback !== null) {
+                                    callback();
+                                }
+                                defaultCallback(type);
+                            }
+                        };
+                    } else {  //Others
+                        asset.onload = function () {
+                            if (callback !== null) {
+                                callback();
+                            }
+                            defaultCallback(type);
+                        };
+                    }
+                    if (type === 'js') {
+                        asset.src = url + "?v=" + JS_VER;
+                        head.appendChild(asset);
+
+                    } else if (type === 'css') {
+                        asset.href = url + "?v=" + CSS_VER;
+                        head.appendChild(asset);
+                    }
+                }
+
+
+                function includeHtml(id, callback = null) {
+                    var e = $("#" + id);
+                    var file = SITE_ROOT + "/" + e.attr("data-file") + "?v=" + HTML_VER;
+                    $.get(file, function (data) {
+                        e.replaceWith(data);
+                        if (callback !== null) {
+                            callback("html");
+                        }
+                    });
+                }
+
+                // 1. load css
+                cssToLoad.map(function (d, i) {
+                    var callback = null;
+                    if (i === 0) {
+                        // once loading css finish show the loader gif
+                        callback = function () {
+                            app_load_img.removeAttribute("hidden");
+                        };
+                    }
+                    loadAsset("css", d, callback);
+                });
+
+                // 2. load js
+                jsToLoad.map(function (d, i) {
+                    loadAsset("js", d);
+                });
+
+                // 2. load js template
+                templateToLoad.map(function (d, i) {
+                    loadAsset("js", d);
+                });
+
+            }
+
+            MainLoadAsset();
+        });
+    </script>
+</body>
+
+</html>

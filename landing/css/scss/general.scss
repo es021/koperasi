@@ -1,0 +1,28 @@
+@import '_constant.scss';
+
+.fa.left{
+    margin-right: 5px;
+}
+
+.fa.sm{
+    font-size: 80%;
+    margin-right: 5px;
+}
+
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+.text-muted{
+    opacity: 0.5;
+}
+
+h1,h2,h3,h4,h5{
+    color: $COLOR-BLUE;
+}

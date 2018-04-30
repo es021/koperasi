@@ -1,0 +1,42 @@
+<main id="app-content" role="main" class="container">
+    <div class="content-body">
+    </div>
+    <div class="content-load">
+        <i class='fa fa-spinner fa-pulse fa-3x'></i>
+        <br> Loading Page..
+    </div>
+</main>
+
+<script>
+    $(document).ready(function () {
+        var page = Util._GET("page");
+        var body = $("#app-content .content-body");
+        body.hide();
+        var load = $("#app-content .content-load");
+        var file = SITE_ROOT + "/page/" + page + ".html?v=" + HTML_VER;
+
+        //return;
+        $.get(file, function (data) {
+            finishLoad(data);
+        }).fail(function (err) {
+            finishLoad(err.responseText);
+        });
+
+        function commentStyle(data) {
+            //comment out styling
+            data = data.replace("<style>", "<style>/*");
+            data = data.replace('<style type="text/css" media="screen">', "<style>/*");
+            data = data.replace("</style>", "*/</style>");
+            return data;
+        }
+
+        function finishLoad(data) {
+            data = commentStyle(data);
+            console.log(data);
+            console.log(body);
+            body.html(data);
+            body.show();
+            load.hide();
+        }
+    });
+</script>

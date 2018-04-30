@@ -8,6 +8,8 @@ package-lock.json
 public/upload/
 server/secret/
 
+/landing/style-builder/
+
 wp/wp-config.php
 wp/wp-admin/
 wp/wp-includes/
