@@ -1,3 +1,7 @@
+String.prototype.replaceAll = function (search, replace) {
+    return this.replace(new RegExp(search, 'g'), replace);
+};
+
 class UtilClass {
     constructor() {
         this.PAGE_DEFAULT = "laman-utama";
@@ -24,6 +28,18 @@ class UtilClass {
         }
 
         return toRet;
+    }
+
+    commentStyle(data) {
+        //comment out styling
+        data = data.replace("<style>", "<style>/*");
+        data = data.replace('<style type="text/css" media="screen">', "<style>/*");
+        data = data.replace("</style>", "*/</style>");
+        return data;
+    }
+
+    replaceImagePath(data) {
+        return data.replaceAll("{{IMAGE_ROOT}}", IMAGE_ROOT);
     }
 }
 var Util = new UtilClass();

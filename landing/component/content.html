@@ -22,16 +22,11 @@
             finishLoad(err.responseText);
         });
 
-        function commentStyle(data) {
-            //comment out styling
-            data = data.replace("<style>", "<style>/*");
-            data = data.replace('<style type="text/css" media="screen">', "<style>/*");
-            data = data.replace("</style>", "*/</style>");
-            return data;
-        }
+        
 
         function finishLoad(data) {
-            data = commentStyle(data);
+            data = Util.commentStyle(data);
+            data = Util.replaceImagePath(data);
             console.log(data);
             console.log(body);
             body.html(data);
