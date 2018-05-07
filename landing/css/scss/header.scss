@@ -1,4 +1,6 @@
 @import '_constant.scss';
-#app-header{
-   
+#app-header {
+    .bg-theme {
+        background: $COLOR-THEME-DARK;
+    }
 }

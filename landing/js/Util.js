@@ -33,13 +33,17 @@ class UtilClass {
     commentStyle(data) {
         //comment out styling
         data = data.replace("<style>", "<style>/*");
+        data = data.replace('<style type="text/css">', "<style>/*");
+        data = data.replace("<style type='text/css'>", "<style>/*");
         data = data.replace('<style type="text/css" media="screen">', "<style>/*");
         data = data.replace("</style>", "*/</style>");
         return data;
     }
 
-    replaceImagePath(data) {
-        return data.replaceAll("{{IMAGE_ROOT}}", IMAGE_ROOT);
+    replaceRootPath(data) {
+        data = data.replaceAll("{{IMAGE_ROOT}}", IMAGE_ROOT);
+        data = data.replaceAll("{{SITE_ROOT}}", SITE_ROOT);
+        return data;
     }
 }
 var Util = new UtilClass();

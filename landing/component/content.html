@@ -22,11 +22,9 @@
             finishLoad(err.responseText);
         });
 
-        
-
         function finishLoad(data) {
             data = Util.commentStyle(data);
-            data = Util.replaceImagePath(data);
+            data = Util.replaceRootPath(data);
             console.log(data);
             console.log(body);
             body.html(data);
