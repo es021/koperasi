@@ -77,15 +77,19 @@ body.kop-main {
     height: 30px;
 }
 
-/*
-@media only screen and (min-width: 1000px) {
-    .primary-layout.landing-page {
-        header {
-            padding: 0 111px;
-        }
+@media only screen and (min-width: 1200px) {
+    #app-content.container {
+        max-width: 900px;
     }
 }
 
+@media only screen and (min-width: 992px) {
+    #app-content.container {
+        max-width: 900px;
+    }
+}
+
+/*
 @media only screen and (max-width: $LAYOUT_MD) {
     header,
     .content,

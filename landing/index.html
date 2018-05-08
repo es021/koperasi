@@ -26,7 +26,7 @@
         var IMAGE_ROOT = ASSET_ROOT + "/image"
 
         // versioning
-        var MASTER_VER = "bbb";
+        var MASTER_VER = "ceqwncoqwlen";
         var JS_VER = MASTER_VER;
         var CSS_VER = MASTER_VER;
         var HTML_VER = MASTER_VER;
@@ -115,7 +115,11 @@
                 }
 
                 //show loading until the main bundle finish load
-                function loadAsset(type, url, callback = null) {
+                function loadAsset(type, url, callback) {
+                    if (typeof callback === "undefined") {
+                        callback = null;
+                    }
+
                     var asset = null;
                     if (type === 'js') {
                         asset = document.createElement("script");
@@ -154,7 +158,11 @@
                 }
 
 
-                function includeHtml(id, callback = null) {
+                function includeHtml(id, callback) {
+                    if (typeof callback === "undefined") {
+                        callback = null;
+                    }
+
                     var e = $("#" + id);
                     var file = SITE_ROOT + "/" + e.attr("data-file") + "?v=" + HTML_VER;
                     $.get(file, function (data) {
