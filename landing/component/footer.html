@@ -1,7 +1,36 @@
 <div id="app-footer">
     <footer class="footer">
         <div class="container text-center">
-            <span class="text">Copyright © 2018 1koperasi.com</span>
+            <p class="text-center">
+                <a class="contact-link" href="{{SITE_ROOT}}/?page=hubungi-kami">
+                    <h4 class="text-center">
+                        <b>Sila Hubungi Kami</b>
+                    </h4>
+                </a>
+                <p>
+                    Dapatkan Khidmat Nasihat kami yang Percuma sebelum buat keputusan
+                    <br>Kesal kemudian dah terlambat
+                </p>
+                <h3 class="text-center">Kami Sedia Membantu Anda</h3>
+                <a class="contact-link" href="{{SITE_ROOT}}/?page=hubungi-kami">
+                    <b>Tekan Sini Untuk Hubungi Kami</b>
+                </a>
+            </p>
+            <span id="copyright" class="text">Copyright ©
+                <span id="year">2018</span> 1koperasi.com</span>
         </div>
     </footer>
 </div>
+
+<script>
+    $(document).ready(function () {
+        var footer = $("#app-footer");
+        var url = SITE_ROOT + "/?page=hubungi-kami";
+        footer.find("a.contact-link").attr("href", url);
+
+        var year = (new Date()).getFullYear();
+        footer.find("#year").html(year);
+
+
+    });
+</script>

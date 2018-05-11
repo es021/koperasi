@@ -24,16 +24,34 @@
     opacity: 0.5;
 }
 
+p,
+ul,
+li,
+i,
+div {
+    color: #3e3e3e;
+}
+
+u{
+    font-weight: bold;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5 {
-    color: $COLOR-BLUE;
+    color: $COLOR-THEME-DARK !important;
 }
 
 .app-list {
     li {
         margin-bottom: 10px;
     }
+}
+
+.list-centered {
+    text-align: left;
+    max-width: 450px;
+    margin: auto;
 }

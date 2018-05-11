@@ -1,0 +1,52 @@
+<div class="text-center">
+    <h1 class="mt-4">Aliran Kerja Permohonan</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="flow-chart"></div>
+            <i>** Semua masa proses ambil lebih kurang 5-10 hari bekerja ikut pakej dan musim **</i>
+        </div>
+        <div class="col-md-12">
+            <h3 class="mt-4">Dokumen Diperlukan</h3>
+            <div class="list-centered">
+                <ul class="app-list">
+                    <li>Photostat Mykad</li>
+                    <li>Photostat Penyata gaji 3 bulan terkini</li>
+                    <li>Salinan Buku bank muka depan</li>
+                    <li>Bill Utiliti</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function addFlow(flowChart, text, isLast) {
+            var fcItem = $("<div class='fc-item'></div>");
+            fcItem.append("<div class='text'>" + text + "</div>");
+
+            if (!isLast) {
+                var arrow = $("<div class='arrow'></div>");
+                arrow.append("<div class='arrow-head'></div>");
+                fcItem.append(arrow);
+            }
+
+            flowChart.append(fcItem);
+        }
+
+
+        var data = [
+            "Isikan maklumat gaji di 1koperasi.com",
+            "1koperasi.com buat pengiraan & hubungi anda",
+            "Pelanggan sediakan dokumen",
+            "Koperasi proses dokumen",
+            "Permohonan lulus & dapat duit",
+        ];
+
+        var flowChart = $(".flow-chart");
+        for (var i in data) {
+            var isLast = (i == data.length - 1);
+            addFlow(flowChart, data[i], isLast);
+        }
+    });
+</script>

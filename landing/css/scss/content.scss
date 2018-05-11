@@ -1,19 +1,46 @@
 @import '_constant.scss';
-
-#app-content{
-    padding: 60px 15px 0;
-    // background-image: url('/test-e/asset/image/content-bg.jpg');
+#app-content {
+    padding: 60px 15px 0; // background-image: url('/test-e/asset/image/content-bg.jpg');
     // background-size: cover;
     // background-position: center center;
-    
-    .content-body{
+    .content-body {
         padding: 10px;
     }
-
-    .content-load{
+    .content-load {
         text-align: center;
         width: 100%;
         margin-top: 20px;
         color: $COLOR-BLUE;
+    }
+}
+
+$FC_ARROW_BODY: 15px;
+$FC_ARROW_HEAD: 12px;
+$FC_COLOR:green;
+.flow-chart {
+    .fc-item {
+        margin-bottom: $FC_ARROW_HEAD;
+        .text {
+            padding: 10px 5px;
+            background: white;
+            margin: auto;
+            max-width: 300px;
+            border: 1px solid $FC_COLOR;
+            border-radius: 10px;
+        }
+        .arrow {
+            width: 10px;
+            height: $FC_ARROW_BODY;
+            background: $FC_COLOR;
+            margin: auto;
+            position: relative;
+            .arrow-head {
+                position: absolute;
+                border: solid $FC_ARROW_HEAD rgba(0, 0, 0, 0);
+                border-top-color: $FC_COLOR;
+                left: -7px;
+                top: $FC_ARROW_BODY;
+            }
+        }
     }
 }
